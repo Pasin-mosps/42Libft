@@ -15,26 +15,31 @@
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	len_s1;
-	size_t	i;
-	size_t	result_index;
-	char	*result;
+	size_t	len_set;
+	const char *start;
+	const char *end;
 
-	i = 0;
-	result = 0;
-	result_index = 0;
+	if (s1 == NULL || set == NULL)
+		return NULL;
+
 	len_s1 = ft_strlen(s1);
-	result = (char *)malloc(len_s1 + 1);
-	if (!result)
+	len_set = ft_strlen(set);
+
+	start = s1;
+	while(*start != '\0' && ft_strchr(set, *start) != NULL)
+		start++;
+	end = s1 + len_s1 - 1;
+	while (end >start && ft_strchr(set, *end) != NULL)
+		end--;
+
+	size_t len_trimmed = end - start +1;
+
+	char *result = (char *)malloc(len_trimmed +1);
+	if (result == NULL)
 		return (NULL);
-	while (i < len_s1)
-	{
-		if (ft_strchr(set, s1[i]) == NULL)
-		{
-			result[result_index] = s1[i];
-			result++;
-		}
-		i++;
-	}
-	result[result_index] = '\0';
-	return (ft_strdup(result));
+	ft_strncmp (result, start, len_trimmed);
+
+	result[len_trimmed] = '\0';
+
+	return (result);
 }

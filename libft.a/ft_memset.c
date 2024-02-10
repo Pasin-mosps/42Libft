@@ -24,3 +24,16 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return (b);
 }
+
+// int main()
+// {
+// 	char a[] = "abcde";
+// 	char b = '4';
+
+// 	ft_memset(a, b, 5);
+// 	for (int i = 0; i < 5; i++) {
+// 		printf("%c", a[i]);
+// 	}
+
+// 	return 0;
+// }

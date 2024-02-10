@@ -9,27 +9,43 @@
 /*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char *ft_itoa(int n)
 {
-	size_t len_s1;
-	size_t len_s2;
+    int length = 0;
+    int temp = n;
 
-	if (s1 == NULL || s2 == NULL )
-		return (NULL);
-	
-	size_t len_s1 = ft_strlen(s1);
-	size_t len_s2 = ft_strlen(s2);
+    while (temp != 0)
+    {
+        temp /= 10;
+        length++;
+    }
 
-	char *result = (char *)malloc(len_s1 + len_s2 + 1);
+    int is_negative = 0;
+    if (n < 0)
+    {
+        is_negative = 1;
+        length++;
+        n = -n;
+    }
 
-	if (result == NULL)
-		return (NULL);
+    char *result = (char *)malloc((length +1) *sizeof(char));
+    if (result == NULL)
+        return (NULL);
 
-	ft_strcpy(result, s1);
-	ft_strcpy(result + len_s1, s2);
+    result[length] = '\0';
 
-	return (result);
+    int i;
+    i = length - 1;
+    while (i >= 0)
+    {
+        result[i] = (n % 10) + '0';
+        n /= 10;
+    }
+    i++;
+
+    if (is_negative)
+        result[0] = '0';
+    return (result);
 }
