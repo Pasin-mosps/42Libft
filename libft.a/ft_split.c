@@ -1,75 +1,72 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enennige <enennige@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: psadsara <psadsara@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:21:31 by enennige          #+#    #+#             */
-/*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
+/*   Created: 2024/02/16 14:50:03 by psadsara          #+#    #+#             */
+/*   Updated: 2024/02/16 15:35:03 by psadsara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char **ft_split(char const *s, char c)
-{   
-    size_t i;
-    if (s == NULL)
-        return (NULL);
+static size_t	count_words(char const *s, char c)
+{
+	size_t	word_count;
+	int		skip;
 
-    size_t len_s = ft_strlen (s);
+	word_count = 0;
+	skip = 1;
+	while (*s)
+	{
+		if (*s != c && skip)
+		{
+			skip = 0;
+			word_count++;
+		}
+		else if (*s == c)
+			skip = 1;
+		s++;
+	}
+	return (word_count);
+}
 
-    size_t count_delimiters = 0;
-    i = 0;
-    while (s[i] != '\0')
-    {
-        if (s[i] == c)
-            count_delimiters++;
-        i++;
-    }
+static void	make_words(char **words, char const *s, char c, size_t n_words)
+{
+	char	*ptr_c;
 
-    size_t num_strings = count_delimiters + 1;
+	while (*s && *s == c)
+		s++;
+	while (n_words--)
+	{
+		ptr_c = ft_strchr(s, c);
+		if (ptr_c != NULL)
+		{
+			*words = ft_substr(s, 0, ptr_c - s);
+			while (*ptr_c && *ptr_c == c)
+				ptr_c++;
+			s = ptr_c;
+		}
+		else
+			*words = ft_substr(s, 0, ft_strlen(s) + 1);
+		words++;
+	}
+	*words = NULL;
+}
 
-    char **result = (char **)malloc((num_strings + 1) *sizeof(char *));
-    if (result == NULL)
-        return NULL;
-    
-    const char *start = s;
+char	**ft_split(char const *s, char c)
+{
+	size_t	num_words;
+	char	**words;
 
-    char *substring;
-
-    size_t array_index = 0;
-
-    i = 0;
-    while(s[i] != '\0')
-    {
-        if (s[i] == c || s[i] == '\0')
-        {
-           size_t len_substring = &s[i] - start; 
-
-           substring = (char *)malloc((len_substring + 1) *sizeof(char));
-           if (substring == NULL)
-           {
-                size_t j = 0;
-                while (j < array_index)
-                    free(result[j]);
-                j++;
-
-                free(result);
-                return (NULL);
-           }
-
-           ft_strlcpy(substring, start, len_substring);
-           substring[len_substring] = '\0';
-
-           result[array_index] = substring;
-           array_index++;
-
-           start = &s[i + 1];
-        }
-        i++;
-    }
-    result[array_index] = NULL;
-
-    return (result);
+	if (s == NULL)
+		return (NULL);
+	num_words = count_words(s, c);
+	words = malloc(sizeof(char **) * (num_words + 1));
+	if (words == NULL)
+		return (NULL);
+	make_words(words, s, c, num_words);
+	return (words);
 }

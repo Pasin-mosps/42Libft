@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enennige <enennige@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: psadsara <psadsara@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:21:31 by enennige          #+#    #+#             */
-/*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
+/*   Created: 2024/02/16 14:50:55 by psadsara          #+#    #+#             */
+/*   Updated: 2024/02/16 15:03:28 by psadsara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)

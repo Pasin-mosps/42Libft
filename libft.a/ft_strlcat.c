@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enennige <enennige@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: psadsara <psadsara@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:21:31 by enennige          #+#    #+#             */
-/*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
+/*   Created: 2024/02/16 14:50:30 by psadsara          #+#    #+#             */
+/*   Updated: 2024/02/16 16:40:05 by psadsara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
 
 size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 {

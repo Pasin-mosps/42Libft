@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enennige <enennige@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: psadsara <psadsara@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:21:31 by enennige          #+#    #+#             */
-/*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
+/*   Created: 2024/02/16 14:50:08 by psadsara          #+#    #+#             */
+/*   Updated: 2024/02/16 15:03:28 by psadsara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int		i;
+	char	ch;
 
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	while (*s != '\0')
+	ch = c;
+	while (*(s + i) != '\0')
 	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
+		if (*(s + i) == ch)
+			return ((char *)s + i);
+		i++;
 	}
-	if (c == '\0')
-		return ((char *)s);
+	if (ch == '\0')
+		return ((char *)s + i);
 	return (NULL);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enennige <enennige@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: psadsara <psadsara@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:21:31 by enennige          #+#    #+#             */
-/*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
+/*   Created: 2024/02/16 14:51:28 by psadsara          #+#    #+#             */
+/*   Updated: 2024/02/16 15:22:53 by psadsara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,26 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 int				ft_tolower(int c);
 
 int				ft_toupper(int c);
+
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
+					void (*del)(void *));
+
+void			ft_lstiter(t_list *lst, void (*f)(void *));
+
+void			ft_lstclear(t_list **lst, void (*del)(void *));
+
+void			ft_lstdelone(t_list *lst, void (*del)(void *));
+
+void			ft_lstadd_back(t_list **lst, t_list *new);
+
+t_list			*ft_lstlast(t_list *lst);
+
+int				ft_lstsize(t_list *lst);
+
+void			ft_lstadd_front(t_list **lst, t_list *new);
+
+t_list			*ft_lstnew(void *content);
+
+void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 #endif

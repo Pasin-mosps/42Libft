@@ -1,51 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enennige <enennige@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: psadsara <psadsara@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:21:31 by enennige          #+#    #+#             */
-/*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
+/*   Created: 2024/02/16 14:48:21 by psadsara          #+#    #+#             */
+/*   Updated: 2024/02/16 16:48:03 by psadsara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_itoa(int n)
+static int	get_num_digits(int n)
 {
-    int length = 0;
-    int temp = n;
+	size_t	i;
 
-    while (temp != 0)
-    {
-        temp /= 10;
-        length++;
-    }
+	i = 1;
+	while (n /= 10)
+	{
+		i++;
+	}
+	return (i);
+}
 
-    int is_negative = 0;
-    if (n < 0)
-    {
-        is_negative = 1;
-        length++;
-        n = -n;
-    }
+char	*ft_itoa(int n)
+{
+	char		*str_num;
+	size_t		digits;
+	long int	num;
 
-    char *result = (char *)malloc((length +1) *sizeof(char));
-    if (result == NULL)
-        return (NULL);
-
-    result[length] = '\0';
-
-    int i;
-    i = length - 1;
-    while (i >= 0)
-    {
-        result[i] = (n % 10) + '0';
-        n /= 10;
-    }
-    i++;
-
-    if (is_negative)
-        result[0] = '0';
-    return (result);
+	num = n;
+	digits = get_num_digits(n);
+	if (n < 0)
+	{
+		num *= -1;
+		digits++;
+	}
+	str_num = (char *)malloc(sizeof(char) * (digits + 1));
+	if (!(str_num))
+		return (NULL);
+	*(str_num + digits) = 0;
+	while (digits--)
+	{
+		*(str_num + digits) = num % 10 + '0';
+		num = num / 10;
+	}
+	if (n < 0)
+		*(str_num + 0) = '-';
+	return (str_num);
 }

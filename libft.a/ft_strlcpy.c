@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enennige <enennige@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: psadsara <psadsara@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:21:31 by enennige          #+#    #+#             */
-/*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
+/*   Created: 2024/02/16 14:50:36 by psadsara          #+#    #+#             */
+/*   Updated: 2024/02/16 18:21:24 by psadsara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
 	i = 0;
-	if (dst == NULL || src == NULL)
-		return (0);
-	if (dstsize > 1)
+	if (dstsize > 0)
 	{
-		while (i < dstsize - 1 && src[i] != '\0')
+		while (*(src + i) && i + 1 < dstsize)
 		{
-			dst[i] = src[i];
+			*(dst + i) = *(src + i);
 			i++;
 		}
-		dst[i] = '\0';
+		*(dst + i) = '\0';
 	}
-	while (src[i] != '\0')
-		i++;
-	return (i);
+	return (ft_strlen(src));
 }

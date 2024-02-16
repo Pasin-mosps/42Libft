@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enennige <enennige@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: psadsara <psadsara@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/19 16:21:31 by enennige          #+#    #+#             */
-/*   Updated: 2018/03/01 08:41:56 by enennige         ###   ########.fr       */
+/*   Created: 2024/02/16 14:50:50 by psadsara          #+#    #+#             */
+/*   Updated: 2024/02/16 15:03:28 by psadsara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -20,12 +21,12 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	b1 = (unsigned char *)s1;
 	b2 = (unsigned char *)s2;
 	i = 0;
-	if (s1 == NULL || s2 == NULL)
-		return (0);
 	while (n > 0)
 	{
-		if (b1[i] != b2[i] || b1 == 0 || b2 == 0)
+		if (b1[i] != b2[i])
 			return (b1[i] - b2[i]);
+		if (b1[i] == '\0' || b2[i] == '\0')
+			break ;
 		i++;
 		n--;
 	}
